@@ -2,5 +2,8 @@
   "name": "clipboard",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "expo-clipboard": "^6.0.3"
+  }
 }
