@@ -1,0 +1,14 @@
+{
+  "name": "rn-common",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.74.3"
+  }
+}
