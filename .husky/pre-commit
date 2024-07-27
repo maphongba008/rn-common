@@ -1,0 +1,2 @@
+node scripts/makeReadme.js
+git add .
