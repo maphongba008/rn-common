@@ -58,8 +58,8 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <Toast.Provider config={toastConfig} />
       {/* Your other app components */}
+      <Toast.Provider config={toastConfig} />
     </SafeAreaProvider>
   );
 }
@@ -82,7 +82,7 @@ Toast.show("error", "This is an error message!");
 The `Toast.Provider` accepts a `config` prop to customize toast behavior:
 
 - `duration` (optional): Duration in milliseconds for how long the toast should be visible. Defaults to 3000 ms.
-- `toastMap` (optional): An object mapping toast types to their styles. Each entry can have `indicatorStyle` and `textStyle` properties.
+- `toastMap`: An object mapping toast types to their styles. Each entry can have `indicatorStyle` and `textStyle` properties.
 
 ## Styling
 
