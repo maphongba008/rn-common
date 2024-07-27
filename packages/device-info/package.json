@@ -1,0 +1,10 @@
+{
+  "name": "device-info",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "expo-application": "^5.9.1",
+    "expo-device": "^6.0.2"
+  }
+}
