@@ -1,5 +1,5 @@
 {
-  "name": "device-info",
+  "name": "@rn-common/device-info",
   "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",

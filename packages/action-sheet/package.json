@@ -1,5 +1,5 @@
 {
-  "name": "action-sheet",
+  "name": "@rn-common/action-sheet",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT"
