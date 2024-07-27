@@ -11,13 +11,13 @@ This component provides a simple and customizable toast notification system for 
 
 ## Installation
 
-Install using npm or yarn:
+Install using npm:
 
 ```bash
 npm install @rn-common/toast
 ```
 
-or
+or yarn:
 
 ```bash
 yarn add @rn-common/toast
