@@ -1,6 +1,6 @@
 [This file is auto-generated, do not edit it manually]
 
-# `@rn-common/toast` - Toast Notification Component
+# [`@rn-common/toast`](./packages/toast) - Toast Notification Component
 
 This component provides a simple and customizable toast notification system for React Native applications. It uses `react-native-reanimated` for animations and `react-native-screens` for overlay support.
 
