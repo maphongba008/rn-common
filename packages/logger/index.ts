@@ -35,19 +35,19 @@ const toString = (message: any) => {
 };
 
 export const logger = {
-  setSeverity: (severity: string) => {
+  setSeverity: (severity: "debug" | "info" | "warn" | "error") => {
     fileLogger.setSeverity(severity);
   },
-  log: (message: any) => {
+  debug: (message: any) => {
     fileLogger.debug(toString(message));
   },
   info: (message: any) => {
-    fileLogger.debug(toString(message));
+    fileLogger.info(toString(message));
   },
   warn: (message: any) => {
-    fileLogger.debug(toString(message));
+    fileLogger.warn(toString(message));
   },
   error: (message: any) => {
-    fileLogger.debug(toString(message));
+    fileLogger.error(toString(message));
   },
 };
