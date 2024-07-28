@@ -1,0 +1,8 @@
+{
+  "common": {
+    "hello": "Xin chao, {{name}}!"
+  },
+  "home": {
+    "title": "Trang chủ"
+  }
+}
