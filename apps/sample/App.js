@@ -13,7 +13,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import BottomSheet from '@rn-common/bottom-sheet'
 import React from 'react'
 import { showActionSheet } from '@rn-common/action-sheet'
-
+import { openImagePicker } from '@rn-common/image-picker'
 logger.setSeverity('info')
 
 const SampleSheet = ({ data, type, close }) => {
@@ -108,6 +108,26 @@ export default function App() {
             }}
           >
             <Text>Show sample sheet</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              openImagePicker({
+                title: 'Select an image',
+                cameraTitle: 'Take a photo',
+                galleryTitle: 'Choose from gallery',
+                cancelButtonTitle: 'Cancel',
+              })
+                .then((image) => {
+                  console.log({ image })
+                })
+                .catch((error) => {
+                  console.log('error here', 123)
+                  console.log(error)
+                })
+            }}
+          >
+            <Text>Show image picker</Text>
           </TouchableOpacity>
 
           <TouchableOpacity

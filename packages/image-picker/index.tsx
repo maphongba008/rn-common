@@ -1,4 +1,3 @@
-import React from 'react'
 import { Keyboard } from 'react-native'
 import { Action, manipulateAsync, SaveFormat } from 'expo-image-manipulator'
 import * as EXImagePicker from 'expo-image-picker'
@@ -91,79 +90,81 @@ type ImagePickerConfig = {
   allowsMultipleSelection?: boolean
 }
 
-/**
- * Custom hook for using the image picker.
- * @returns A function that can be used to open the image picker.
- */
-export const useImagePicker = () => {
-  return React.useCallback(
-    async (config: ImagePickerConfig) =>
-      new Promise<Image[]>(async (resolve, reject) => {
-        const {
-          aspect = [4, 3],
-          quality = 0.8,
-          allowsMultipleSelection = true,
-          maxHeight,
-          maxWidth,
-        } = config
-        Keyboard.dismiss()
-        showActionSheet({
-          title: config?.title,
-          buttons: [
-            {
-              text: config.cameraTitle || 'Take a photo',
-              onPress: async () => {
-                const { status } =
-                  await EXImagePicker.requestCameraPermissionsAsync()
-                if (status !== 'granted') {
-                  return reject('PERMISSION_DENIED')
-                }
-                const res = await EXImagePicker.launchCameraAsync({
-                  mediaTypes: EXImagePicker.MediaTypeOptions.Images,
-                  aspect,
-                  quality,
-                })
-                if (res.canceled || !res.assets.length) {
-                  return reject('CANCELLED')
-                }
-                const image = await resizeImage(res.assets[0], {
-                  compressImageMaxWidth: maxWidth,
-                  compressImageMaxHeight: maxHeight,
-                })
-                resolve([image])
-              },
-            },
-            {
-              text: config.photoLibraryTitle || 'Choose from gallery',
-              onPress: async () => {
-                const { status } =
-                  await EXImagePicker.requestMediaLibraryPermissionsAsync()
-                if (status !== 'granted') {
-                  return reject('PERMISSION_DENIED')
-                }
-                const res = await EXImagePicker.launchImageLibraryAsync({
-                  mediaTypes: EXImagePicker.MediaTypeOptions.Images,
-                  allowsMultipleSelection,
-                  aspect,
-                  quality,
-                })
-                if (res.canceled || !res.assets.length) {
-                  return reject('CANCELLED')
-                }
-                const promises = res.assets.map((asset) =>
-                  resizeImage(asset, {
-                    compressImageMaxWidth: maxWidth,
-                    compressImageMaxHeight: maxHeight,
-                  }),
-                )
-                const images = await Promise.all(promises)
+export const openImageCameraPicker = async (config: ImagePickerConfig) => {
+  const { aspect = [4, 3], quality = 0.8, maxHeight, maxWidth } = config
+  const { status } = await EXImagePicker.requestCameraPermissionsAsync()
+  if (status !== 'granted') {
+    throw 'PERMISSION_DENIED'
+  }
+  const res = await EXImagePicker.launchCameraAsync({
+    mediaTypes: EXImagePicker.MediaTypeOptions.Images,
+    aspect,
+    quality,
+  })
+  if (res.canceled || !res.assets.length) {
+    throw 'CANCELLED'
+  }
+  const image = await resizeImage(res.assets[0], {
+    compressImageMaxWidth: maxWidth,
+    compressImageMaxHeight: maxHeight,
+  })
+  return [image]
+}
 
-                resolve(images)
-              },
-            },
-          ],
-        })
-      }),
-    [],
+export const openImageLibraryPicker = async (config: ImagePickerConfig) => {
+  const {
+    aspect = [4, 3],
+    quality = 0.8,
+    allowsMultipleSelection = false,
+    maxHeight,
+    maxWidth,
+  } = config
+
+  const { status } = await EXImagePicker.requestMediaLibraryPermissionsAsync()
+  if (status !== 'granted') {
+    throw new Error('PERMISSION_DENIED')
+  }
+  const res = await EXImagePicker.launchImageLibraryAsync({
+    mediaTypes: EXImagePicker.MediaTypeOptions.Images,
+    allowsMultipleSelection,
+    aspect,
+    quality,
+  })
+  if (res.canceled || !res.assets.length) {
+    throw new Error('CANCELLED')
+  }
+  const promises = res.assets.map((asset) =>
+    resizeImage(asset, {
+      compressImageMaxWidth: maxWidth,
+      compressImageMaxHeight: maxHeight,
+    }),
   )
+  return await Promise.all(promises)
+}
+
+export const openImagePicker = (config: ImagePickerConfig) => {
+  return new Promise<Image[]>(async (resolve, reject) => {
+    Keyboard.dismiss()
+    showActionSheet({
+      title: config?.title,
+      buttons: [
+        {
+          text: config.cameraTitle || 'Take a photo',
+          onPress: () => {
+            openImageCameraPicker(config).then(resolve).catch(reject)
+          },
+        },
+        {
+          text: config.photoLibraryTitle || 'Choose from gallery',
+          onPress: () => {
+            openImageLibraryPicker(config).then(resolve).catch(reject)
+          },
+        },
+        {
+          text: config.cancelButtonTitle || 'Cancel',
+          type: 'cancel',
+        },
+      ],
+    })
+  })
 }

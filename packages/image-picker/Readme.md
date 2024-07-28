@@ -1,6 +1,6 @@
 # [`@rn-common/image-picker`](./packages/image-picker)
 
-This module use `expo-image-picker` and `expo-image-manipulator` to provides utilities for selecting images from the camera or gallery in a React Native application.
+This utility provides a convenient way to pick and resize images using the camera or photo library in a React Native application. It leverages `expo-image-picker` for image selection and `expo-image-manipulator` for resizing images, with additional UI support via `@rn-common/action-sheet`.
 
 ## Installation
 
@@ -16,45 +16,70 @@ or yarn:
 yarn add @rn-common/image-picker
 ```
 
+## Features
+
+- **Cross-Platform Support**: Works on both iOS and Android.
+- **Action Sheet Integration**: Presents options to the user in an action sheet format.
+- **Permission Handling**: Manages camera and media library permissions.
+
 ## Usage
 
-### Image Picker Hook
+### Configuration Options
 
-The `useImagePicker` hook allows you to select images from the camera or gallery. It provides configuration options such as aspect ratio, quality, and whether multiple selections are allowed.
+The utility functions accept a `ImagePickerConfig` object with the following optional properties:
+
+- `title` (optional): Title of the action sheet.
+- `photoLibraryTitle` (optional): Title for the option to choose from the gallery. Default to 'Choose from gallery'.
+- `cameraTitle` (optional): Title for the option to take a photo. Default to 'Take a photo'.
+- `cancelButtonTitle` (optional): Title for the cancel button. Default to 'Cancel'.
+- `maxWidth` (optional): Maximum width for the resized image.
+- `maxHeight` (optional): Maximum height for the resized image.
+- `aspect` (optional): Aspect ratio for the image. Default to [4, 3].
+- `quality` (optional): Quality of the resized image (0 to 1). Default to 0.8.
+- `allowsMultipleSelection` (optional): Boolean indicating if multiple images can be selected.
+
+### Open Image Picker
+
+To open an action sheet and allow the user to pick an image from the camera or photo library:
 
 ```javascript
-import { useImagePicker } from '@rn-common/image-picker'
+import { openImagePicker } from '@rn-common/image-picker'
 
-const pickImage = useImagePicker()
-
-const handlePickImage = async () => {
-  try {
-    const images = await pickImage({
-      title: 'Select Image',
-      photoLibraryTitle: 'Choose from gallery',
-      cameraTitle: 'Take a photo',
-      maxWidth: 800,
-      maxHeight: 600,
-      quality: 0.8,
-      allowsMultipleSelection: false,
-    })
-    console.log('Selected images:', images)
-  } catch (error) {
-    console.error('Error picking image:', error)
-  }
+const config = {
+  title: 'Select an option',
+  cameraTitle: 'Take a Photo',
+  photoLibraryTitle: 'Choose from Gallery',
+  cancelButtonTitle: 'Cancel',
+  maxWidth: 800,
+  maxHeight: 600,
+  aspect: [4, 3],
+  quality: 0.8,
 }
+
+openImagePicker(config)
+  .then((images) => {
+    console.log('Selected images:', images)
+  })
+  .catch((error) => {
+    console.error('Error picking images:', error)
+  })
 ```
 
-## Configuration Options
+## Functions
 
-### `useImagePicker` Configuration
+### `openImageCameraPicker`
 
-- `title` (string): Title for the action sheet.
-- `photoLibraryTitle` (string): Label for the gallery option.
-- `cameraTitle` (string): Label for the camera option.
-- `cancelButtonTitle` (string): Label for the cancel button.
-- `maxWidth` (number): Maximum width for selected images.
-- `maxHeight` (number): Maximum height for selected images.
-- `aspect` ([number, number]): Aspect ratio for the image.
-- `quality` (number): Quality of the image (0-1).
-- `allowsMultipleSelection` (boolean): Whether multiple images can be selected.
+Launches the camera for image capture.
+
+### `openImageLibraryPicker`
+
+Opens the media library for image selection.
+
+### `openImagePicker`
+
+Displays an action sheet with options to either take a photo or choose from the gallery.
+
+### Error Handling
+
+- `PERMISSION_DENIED`: Thrown if the necessary permissions are not granted.
+- `CANCELLED`: Thrown if the user cancels the image picking process.

@@ -12,6 +12,7 @@
     "@rn-common/action-sheet": "*",
     "@rn-common/bottom-sheet": "*",
     "@rn-common/device-info": "*",
+    "@rn-common/image-picker": "*",
     "@rn-common/logger": "*",
     "@rn-common/toast": "*",
     "expo": "~51.0.22",

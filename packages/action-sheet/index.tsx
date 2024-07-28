@@ -11,7 +11,7 @@ import BottomSheet, { SheetProps } from '@rn-common/bottom-sheet'
 
 export type Button = {
   text: string
-  onPress: () => void
+  onPress?: () => void
   type?: 'default' | 'cancel' | 'destructive'
 }
 
@@ -36,7 +36,7 @@ export const showActionSheet = (actionSheet: ActionSheet) => {
         ),
       },
       (index) => {
-        actionSheet.buttons[index]?.onPress()
+        actionSheet.buttons[index]?.onPress?.()
       },
     )
   }
@@ -63,7 +63,7 @@ const AndroidActionSheet = ({
               activeOpacity={0.7}
               onPress={() => {
                 close()
-                button.onPress()
+                button.onPress?.()
               }}
             >
               <Text
@@ -87,7 +87,7 @@ const AndroidActionSheet = ({
               activeOpacity={0.7}
               onPress={() => {
                 close()
-                button.onPress()
+                button.onPress?.()
               }}
             >
               <Text style={[styles.buttonText, styles.cancelText]}>
