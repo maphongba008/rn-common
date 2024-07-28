@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@rn-common/action-sheet": "*",
     "@rn-common/bottom-sheet": "*",
     "@rn-common/device-info": "*",
     "@rn-common/logger": "*",

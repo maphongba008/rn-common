@@ -12,6 +12,7 @@ import Toast from '@rn-common/toast'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import BottomSheet from '@rn-common/bottom-sheet'
 import React from 'react'
+import { showActionSheet } from '@rn-common/action-sheet'
 
 logger.setSeverity('info')
 
@@ -107,6 +108,45 @@ export default function App() {
             }}
           >
             <Text>Show sample sheet</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              showActionSheet({
+                title: "What's your favorite color?",
+                message: 'Choose your favorite color',
+                buttons: [
+                  {
+                    text: 'Blue',
+                    onPress: () => {
+                      console.log('Blue')
+                    },
+                  },
+                  {
+                    text: 'Green',
+                    onPress: () => {
+                      console.log('Green')
+                    },
+                  },
+                  {
+                    text: 'Red',
+                    type: 'destructive',
+                    onPress: () => {
+                      console.log('Red')
+                    },
+                  },
+                  {
+                    text: 'Cancel',
+                    type: 'cancel',
+                    onPress: () => {
+                      console.log('Cancel')
+                    },
+                  },
+                ],
+              })
+            }}
+          >
+            <Text>Show actions sheet</Text>
           </TouchableOpacity>
 
           <StatusBar style="auto" />

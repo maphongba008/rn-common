@@ -1,6 +1,9 @@
 {
   "name": "@rn-common/action-sheet",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "main": "index.tsx",
+  "license": "MIT",
+  "dependencies": {
+    "@rn-common/bottom-sheet": "*"
+  }
 }
