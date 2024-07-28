@@ -10,6 +10,8 @@
 
 [@rn-common/hooks](#rn-commonhooks)
 
+[@rn-common/logger](#rn-commonlogger)
+
 [@rn-common/toast](#rn-commontoast)
 
 # [`@rn-common/bottom-sheet`](./packages/bottom-sheet)
@@ -465,7 +467,7 @@ Tracks the current state of the app (active, background, or inactive).
 **Example:**
 
 ```javascript
-import { useAppState } from './hooks'
+import { useAppState } from '@rn-common/hooks'
 
 const appState = useAppState()
 console.log(`Current app state: ${appState}`)
@@ -482,7 +484,7 @@ Determines if the app is in the background.
 **Example:**
 
 ```javascript
-import { useIsAppInBackground } from './hooks'
+import { useIsAppInBackground } from '@rn-common/hooks'
 
 const isInBackground = useIsAppInBackground()
 console.log(`Is app in background: ${isInBackground}`)
@@ -499,7 +501,7 @@ Determines if the app is in the foreground.
 **Example:**
 
 ```javascript
-import { useIsAppInForeground } from './hooks'
+import { useIsAppInForeground } from '@rn-common/hooks'
 
 const isInForeground = useIsAppInForeground()
 console.log(`Is app in foreground: ${isInForeground}`)
@@ -516,7 +518,7 @@ Registers a callback function to be called when the app state changes.
 **Example:**
 
 ```javascript
-import { useAppStateChanged } from './hooks'
+import { useAppStateChanged } from '@rn-common/hooks'
 
 useAppStateChanged((prevState, newState) => {
   console.log(`App state changed from ${prevState} to ${newState}`)
@@ -534,7 +536,7 @@ Provides a function to copy text to the clipboard.
 **Example:**
 
 ```javascript
-import { useOnCopy } from './hooks'
+import { useOnCopy } from '@rn-common/hooks'
 
 const copyText = useOnCopy()
 copyText('Hello, world!')
@@ -551,7 +553,7 @@ Retrieves the current text from the clipboard.
 **Example:**
 
 ```javascript
-import { useClipboard } from './hooks'
+import { useClipboard } from '@rn-common/hooks'
 
 useClipboard().then((text) => {
   console.log(`Clipboard text: ${text}`)
@@ -569,7 +571,7 @@ Tracks the height of the on-screen keyboard.
 **Example:**
 
 ```javascript
-import { useKeyboardHeight } from './hooks'
+import { useKeyboardHeight } from '@rn-common/hooks'
 
 const keyboardHeight = useKeyboardHeight()
 console.log(`Keyboard height: ${keyboardHeight}px`)
@@ -586,7 +588,7 @@ Determines if the on-screen keyboard is visible.
 **Example:**
 
 ```javascript
-import { useIsKeyboardShow } from './hooks'
+import { useIsKeyboardShow } from '@rn-common/hooks'
 
 const isKeyboardVisible = useIsKeyboardShow()
 console.log(`Is keyboard visible: ${isKeyboardVisible}`)
@@ -603,7 +605,7 @@ Handles the hardware back button press on Android devices.
 **Example:**
 
 ```javascript
-import { useBackHandler } from './hooks'
+import { useBackHandler } from '@rn-common/hooks'
 
 useBackHandler(() => {
   console.log('Back button pressed')
@@ -623,10 +625,70 @@ Tracks layout measurements of a component.
 **Example:**
 
 ```javascript
-import { useLayout } from './hooks'
+import { useLayout } from '@rn-common/hooks'
 
 const { onLayout, width, height } = useLayout()
 return <View onLayout={onLayout} />
+```
+
+# [`@rn-common/logger`](./packages/logger)
+
+This module provides a logging utility for React Native applications, leveraging `react-native-logs` and `expo-file-system` for storing logs in a file. It allows you to log messages with various severity levels and save them to a designated directory.
+
+## Installation
+
+Install using npm:
+
+```sh
+npm install @rn-common/logger
+```
+
+or yarn:
+
+```sh
+yarn add @rn-common/logger
+```
+
+## Usage
+
+### `logger`
+
+The `logger` object provides methods to log messages with different severity levels.
+
+#### Methods
+
+- **`setSeverity(severity: 'debug' | 'info' | 'warn' | 'error')`**
+
+  - Sets the severity level of the logger. Messages with a lower severity level than the set level will be ignored.
+
+- **`debug(message: any)`**
+
+  - Logs a debug message.
+
+- **`info(message: any)`**
+
+  - Logs an informational message.
+
+- **`warn(message: any)`**
+
+  - Logs a warning message.
+
+- **`error(message: any)`**
+  - Logs an error message.
+
+#### Example
+
+```javascript
+import { logger } from '@rn-common/logger'
+
+// Set severity level
+logger.setSeverity('info')
+
+// Log messages with different severity levels
+logger.debug('This is a debug message')
+logger.info('This is an info message')
+logger.warn('This is a warning message')
+logger.error('This is an error message')
 ```
 
 # [`@rn-common/toast`](./packages/toast)

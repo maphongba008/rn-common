@@ -29,7 +29,7 @@ Tracks the current state of the app (active, background, or inactive).
 **Example:**
 
 ```javascript
-import { useAppState } from './hooks'
+import { useAppState } from '@rn-common/hooks'
 
 const appState = useAppState()
 console.log(`Current app state: ${appState}`)
@@ -46,7 +46,7 @@ Determines if the app is in the background.
 **Example:**
 
 ```javascript
-import { useIsAppInBackground } from './hooks'
+import { useIsAppInBackground } from '@rn-common/hooks'
 
 const isInBackground = useIsAppInBackground()
 console.log(`Is app in background: ${isInBackground}`)
@@ -63,7 +63,7 @@ Determines if the app is in the foreground.
 **Example:**
 
 ```javascript
-import { useIsAppInForeground } from './hooks'
+import { useIsAppInForeground } from '@rn-common/hooks'
 
 const isInForeground = useIsAppInForeground()
 console.log(`Is app in foreground: ${isInForeground}`)
@@ -80,7 +80,7 @@ Registers a callback function to be called when the app state changes.
 **Example:**
 
 ```javascript
-import { useAppStateChanged } from './hooks'
+import { useAppStateChanged } from '@rn-common/hooks'
 
 useAppStateChanged((prevState, newState) => {
   console.log(`App state changed from ${prevState} to ${newState}`)
@@ -98,7 +98,7 @@ Provides a function to copy text to the clipboard.
 **Example:**
 
 ```javascript
-import { useOnCopy } from './hooks'
+import { useOnCopy } from '@rn-common/hooks'
 
 const copyText = useOnCopy()
 copyText('Hello, world!')
@@ -115,7 +115,7 @@ Retrieves the current text from the clipboard.
 **Example:**
 
 ```javascript
-import { useClipboard } from './hooks'
+import { useClipboard } from '@rn-common/hooks'
 
 useClipboard().then((text) => {
   console.log(`Clipboard text: ${text}`)
@@ -133,7 +133,7 @@ Tracks the height of the on-screen keyboard.
 **Example:**
 
 ```javascript
-import { useKeyboardHeight } from './hooks'
+import { useKeyboardHeight } from '@rn-common/hooks'
 
 const keyboardHeight = useKeyboardHeight()
 console.log(`Keyboard height: ${keyboardHeight}px`)
@@ -150,7 +150,7 @@ Determines if the on-screen keyboard is visible.
 **Example:**
 
 ```javascript
-import { useIsKeyboardShow } from './hooks'
+import { useIsKeyboardShow } from '@rn-common/hooks'
 
 const isKeyboardVisible = useIsKeyboardShow()
 console.log(`Is keyboard visible: ${isKeyboardVisible}`)
@@ -167,7 +167,7 @@ Handles the hardware back button press on Android devices.
 **Example:**
 
 ```javascript
-import { useBackHandler } from './hooks'
+import { useBackHandler } from '@rn-common/hooks'
 
 useBackHandler(() => {
   console.log('Back button pressed')
@@ -187,7 +187,7 @@ Tracks layout measurements of a component.
 **Example:**
 
 ```javascript
-import { useLayout } from './hooks'
+import { useLayout } from '@rn-common/hooks'
 
 const { onLayout, width, height } = useLayout()
 return <View onLayout={onLayout} />
