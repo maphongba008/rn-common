@@ -1,4 +1,4 @@
-# [`@rn-common/bottom-sheet`](./packages/bottom-sheet) - BottomSheet Component Documentation
+# [`@rn-common/bottom-sheet`](./packages/bottom-sheet)
 
 ## Overview
 

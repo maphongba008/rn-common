@@ -1,6 +1,6 @@
 [This file is auto-generated, do not edit it manually]
 
-# [`@rn-common/bottom-sheet`](./packages/bottom-sheet) - BottomSheet Component Documentation
+# [`@rn-common/bottom-sheet`](./packages/bottom-sheet)
 
 ## Overview
 
@@ -93,7 +93,7 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 
 This project is licensed under the MIT License.
 
-# [`@rn-common/toast`](./packages/toast) - Toast Notification Component
+# [`@rn-common/toast`](./packages/toast)
 
 This component provides a simple and customizable toast notification system for React Native applications. It uses `react-native-reanimated` for animations and `react-native-screens` for overlay support.
 
