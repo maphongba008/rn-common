@@ -47,11 +47,6 @@ const handlePickImage = async () => {
 
 ## Configuration Options
 
-### `resizeImage` Options
-
-- `compressImageMaxWidth` (number): Maximum width for the resized image.
-- `compressImageMaxHeight` (number): Maximum height for the resized image.
-
 ### `useImagePicker` Configuration
 
 - `title` (string): Title for the action sheet.
