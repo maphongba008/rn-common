@@ -1,4 +1,8 @@
-[This file is auto-generated, do not edit it manually]
+[This file is auto-generated, do not edit it manually
+[@rn-common/bottom-sheet](https://github.com/maphongba008/rn-common#rn-commonbottom-sheet)
+[@rn-common/device-info](https://github.com/maphongba008/rn-common#rn-commondevice-info)
+[@rn-common/event-emitter](https://github.com/maphongba008/rn-common#rn-commonevent-emitter)
+[@rn-common/toast](https://github.com/maphongba008/rn-common#rn-commontoast)
 
 # [`@rn-common/bottom-sheet`](./packages/bottom-sheet)
 

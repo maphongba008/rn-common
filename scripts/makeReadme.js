@@ -4,8 +4,8 @@ const dir = './packages'
 
 const join = (...args) => args.join('/')
 
-let readmeContent = '[This file is auto-generated, do not edit it manually]\n\n'
-
+let headers = ['[This file is auto-generated, do not edit it manually']
+let readmeContent = ''
 fs.readdirSync(dir).forEach((file) => {
   if (fs.statSync(join(dir, file)).isDirectory()) {
     const readmeFile = join(dir, file, 'README.md')
@@ -14,7 +14,10 @@ fs.readdirSync(dir).forEach((file) => {
     }
     const content = fs.readFileSync(readmeFile, 'utf8')
     readmeContent += content + '\n'
+    headers.push(
+      `[@rn-common/${file}](https://github.com/maphongba008/rn-common#rn-common${file})`,
+    )
   }
 })
 
-fs.writeFileSync('README.md', readmeContent)
+fs.writeFileSync('README.md', headers.join('\n') + '\n\n' + readmeContent)
