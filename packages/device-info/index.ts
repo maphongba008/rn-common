@@ -1,5 +1,5 @@
-import * as Device from "expo-device";
-import * as Application from "expo-application";
+import * as Device from 'expo-device'
+import * as Application from 'expo-application'
 
 /**
  * Retrieves information about the device.
@@ -15,8 +15,8 @@ export const getDeviceInfo = () => {
     modelName: Device.modelName,
     os: Device.osName,
     osVersion: Device.osVersion,
-  };
-};
+  }
+}
 
 /**
  * Retrieves information about the app.
@@ -32,5 +32,5 @@ export const getAppInfo = () => {
     version: Application.nativeApplicationVersion,
     buildNumber: Application.nativeBuildVersion,
     appId: Application.applicationId,
-  };
-};
+  }
+}

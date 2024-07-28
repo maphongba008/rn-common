@@ -1,7 +1,7 @@
-import * as FileSystem from "expo-file-system";
+import * as FileSystem from 'expo-file-system'
 
-export const DocumentDirectory = FileSystem.documentDirectory;
-export const CacheDirectory = FileSystem.cacheDirectory;
+export const DocumentDirectory = FileSystem.documentDirectory
+export const CacheDirectory = FileSystem.cacheDirectory
 
 /**
  * Creates a new directory at the specified path. If intermediate directories do not exist, they will be created as well.
@@ -14,8 +14,8 @@ export const CacheDirectory = FileSystem.cacheDirectory;
  * await mkdir('/path/to/new/directory');
  */
 export const mkdir = async (dir: string) => {
-  return FileSystem.makeDirectoryAsync(dir, { intermediates: true });
-};
+  return FileSystem.makeDirectoryAsync(dir, { intermediates: true })
+}
 
 /**
  * Checks if a file exists at the specified path.
@@ -29,13 +29,13 @@ export const mkdir = async (dir: string) => {
  */
 export const readFile = async (
   filePath: string,
-  options?: FileSystem.ReadingOptions
+  options?: FileSystem.ReadingOptions,
 ) => {
   return FileSystem.readAsStringAsync(filePath, {
     encoding: FileSystem.EncodingType.UTF8,
     ...options,
-  });
-};
+  })
+}
 
 /**
  * Writes the specified contents to a file at the specified path.
@@ -52,13 +52,13 @@ export const readFile = async (
 export const writeFile = async (
   filePath: string,
   contents: string,
-  options?: FileSystem.WritingOptions
+  options?: FileSystem.WritingOptions,
 ) => {
   return FileSystem.writeAsStringAsync(filePath, contents, {
     encoding: FileSystem.EncodingType.UTF8,
     ...options,
-  });
-};
+  })
+}
 
 /**
  * Deletes a file at the specified path.
@@ -71,8 +71,8 @@ export const writeFile = async (
  * await removeFile('/path/to/file.txt');
  */
 export const removeFile = async (filePath: string) => {
-  return FileSystem.deleteAsync(filePath);
-};
+  return FileSystem.deleteAsync(filePath)
+}
 
 /**
  * Deletes a folder at the specified path. Note that this will delete the folder and all its contents.
@@ -85,8 +85,8 @@ export const removeFile = async (filePath: string) => {
  * await removeFolder('/path/to/folder');
  */
 export const removeFolder = async (folderPath: string) => {
-  return FileSystem.deleteAsync(folderPath);
-};
+  return FileSystem.deleteAsync(folderPath)
+}
 
 /**
  * Extracts the filename from a given file path. Optionally, the file extension can be excluded from the result.
@@ -101,10 +101,10 @@ export const removeFolder = async (folderPath: string) => {
  * const nameWithoutExtension = extractFilename('/path/to/file.txt', false); // 'file'
  */
 export const extractFilename = (filePath: string, withExtension = true) => {
-  const parts = filePath.split("/");
-  const filename = parts[parts.length - 1];
-  return withExtension ? filename : filename.split(".")[0];
-};
+  const parts = filePath.split('/')
+  const filename = parts[parts.length - 1]
+  return withExtension ? filename : filename.split('.')[0]
+}
 
 /**
  * Extracts the file extension from a given file path.
@@ -118,9 +118,9 @@ export const extractFilename = (filePath: string, withExtension = true) => {
  * const noExtension = extractExtension('/path/to/file'); // ''
  */
 export const extractExtension = (filePath: string) => {
-  const parts = filePath.split(".");
-  return parts[parts.length - 1] || "";
-};
+  const parts = filePath.split('.')
+  return parts[parts.length - 1] || ''
+}
 
 /**
  * Joins multiple path segments into a single path, using '/' as the separator.
@@ -133,8 +133,8 @@ export const extractExtension = (filePath: string) => {
  * const fullPath = joinPath('/path', 'to', 'file.txt'); // '/path/to/file.txt'
  */
 export const joinPath = (...paths: string[]) => {
-  return paths.join("/");
-};
+  return paths.join('/')
+}
 
 /**
  * Initiates a file download from a specified URI and saves it to a given file path.
@@ -167,10 +167,10 @@ export const createDownloadFile = async ({
   options,
   onProgress,
 }: {
-  uri: string;
-  filePath: string;
-  options?: FileSystem.DownloadOptions;
-  onProgress: (progress: number) => void;
+  uri: string
+  filePath: string
+  options?: FileSystem.DownloadOptions
+  onProgress: (progress: number) => void
 }) => {
   const resumable = FileSystem.createDownloadResumable(
     uri,
@@ -178,16 +178,16 @@ export const createDownloadFile = async ({
     options,
     (p) => {
       const progress = Math.round(
-        (p.totalBytesWritten * 100) / p.totalBytesExpectedToWrite
-      );
-      onProgress(progress);
-    }
-  );
+        (p.totalBytesWritten * 100) / p.totalBytesExpectedToWrite,
+      )
+      onProgress(progress)
+    },
+  )
   return {
     download: resumable.downloadAsync(),
     pause: resumable.pauseAsync(),
     resume: resumable.resumeAsync(),
     cancel: resumable.cancelAsync(),
     uri: resumable.fileUri,
-  };
-};
+  }
+}

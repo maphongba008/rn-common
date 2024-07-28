@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Platform,
   StyleProp,
@@ -7,7 +7,7 @@ import {
   TextStyle,
   View,
   ViewStyle,
-} from "react-native";
+} from 'react-native'
 import Animated, {
   LinearTransition,
   runOnJS,
@@ -15,67 +15,67 @@ import Animated, {
   SlideOutUp,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
-import { FullWindowOverlay } from "react-native-screens";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { subscribe, emit } from "@rn-common/event-emitter";
-import { useUniqId } from "./hooks";
+} from 'react-native-reanimated'
+import { FullWindowOverlay } from 'react-native-screens'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { subscribe, emit } from '@rn-common/event-emitter'
+import { useUniqId } from './hooks'
 
 type Toast = {
-  type: string;
-  message: string;
-  id: string;
-};
+  type: string
+  message: string
+  id: string
+}
 
 export type ToastProps = {
-  indicatorStyle?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
-};
+  indicatorStyle?: StyleProp<ViewStyle>
+  textStyle?: StyleProp<TextStyle>
+}
 
 export type ToastConfig = {
-  duration?: number;
-  toastMap: Record<string, ToastProps>;
-};
+  duration?: number
+  toastMap: Record<string, ToastProps>
+}
 
 const ToastItem = ({
   onClose,
   toast,
   config,
 }: {
-  toast: Toast;
-  onClose?: (id: string) => void;
-  config?: ToastConfig;
+  toast: Toast
+  onClose?: (id: string) => void
+  config?: ToastConfig
 }) => {
-  const animationValue = useSharedValue(0);
+  const animationValue = useSharedValue(0)
   const timeoutId = React.useRef<ReturnType<typeof setTimeout> | undefined>(
-    undefined
-  );
+    undefined,
+  )
 
   const startAnimation = React.useCallback(
     (value: number, cb?: () => void) => {
       if (!value && timeoutId.current) {
-        clearTimeout(timeoutId.current);
+        clearTimeout(timeoutId.current)
       }
       animationValue.value = withTiming(value, { duration: 300 }, () => {
         if (cb) {
-          runOnJS(cb)();
+          runOnJS(cb)()
         }
-      });
+      })
     },
-    [animationValue]
-  );
+    [animationValue],
+  )
 
   React.useEffect(() => {
     startAnimation(1, () => {
       timeoutId.current = setTimeout(() => {
         startAnimation(0, () => {
-          onClose?.(toast.id);
-        });
-      }, config?.duration || 3000);
-    });
-  }, [config?.duration, onClose, startAnimation, toast.id]);
+          onClose?.(toast.id)
+        })
+      }, config?.duration || 3000)
+    })
+  }, [config?.duration, onClose, startAnimation, toast.id])
 
-  const toastStyle = config?.toastMap?.[toast.type] || {};
+  const toastStyle = config?.toastMap?.[toast.type] || {}
 
   return (
     <Animated.View
@@ -91,17 +91,17 @@ const ToastItem = ({
         </Text>
       </View>
     </Animated.View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 8,
-    backgroundColor: "#FFF",
-    flexDirection: "row",
+    backgroundColor: '#FFF',
+    flexDirection: 'row',
     borderRadius: 8,
     marginHorizontal: 16,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: -2,
@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   message: {
-    color: "#000",
+    color: '#000',
     paddingHorizontal: 8,
   },
   indicator: {
     width: 6,
-    height: "100%",
+    height: '100%',
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
   },
@@ -124,31 +124,31 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 8,
   },
-});
+})
 
 const Provider = ({ config }: { config?: ToastConfig }) => {
-  const Wrapper = Platform.OS === "ios" ? FullWindowOverlay : React.Fragment;
-  const { top } = useSafeAreaInsets();
-  const [data, setData] = React.useState<Toast[]>([]);
-  const { next } = useUniqId();
+  const Wrapper = Platform.OS === 'ios' ? FullWindowOverlay : React.Fragment
+  const { top } = useSafeAreaInsets()
+  const [data, setData] = React.useState<Toast[]>([])
+  const { next } = useUniqId()
 
   React.useEffect(() => {
-    return subscribe("toast", (data: { type: string; message: string }) => {
-      setData((state) => [...state, { ...data, id: next() }]);
-    });
-  }, []);
+    return subscribe('toast', (mData: { type: string; message: string }) => {
+      setData((state) => [...state, { ...mData, id: next() }])
+    })
+  }, [next])
 
   const onRemove = (id: string) => {
-    setData((state) => state.filter((d) => d.id !== id));
-  };
+    setData((state) => state.filter((d) => d.id !== id))
+  }
 
   const style: ViewStyle = {
     elevation: 1,
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     right: 0,
     top: top + 16,
-  };
+  }
 
   return (
     <Wrapper>
@@ -165,12 +165,12 @@ const Provider = ({ config }: { config?: ToastConfig }) => {
               onClose={onRemove}
               toast={d}
             />
-          );
+          )
         })}
       </Animated.View>
     </Wrapper>
-  );
-};
+  )
+}
 
 export default {
   /**
@@ -188,6 +188,6 @@ export default {
    * @param message - The message of the toast.
    */
   show: (type: string, message: string) => {
-    emit("toast", { type, message });
+    emit('toast', { type, message })
   },
-};
+}

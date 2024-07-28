@@ -1,21 +1,20 @@
-const fs = require("fs");
+const fs = require('fs')
 
-const dir = "./packages";
+const dir = './packages'
 
-const join = (...args) => args.join("/");
+const join = (...args) => args.join('/')
 
-let readmeContent =
-  "[This file is auto-generated, do not edit it manually]\n\n";
+let readmeContent = '[This file is auto-generated, do not edit it manually]\n\n'
 
 fs.readdirSync(dir).forEach((file) => {
   if (fs.statSync(join(dir, file)).isDirectory()) {
-    const readmeFile = join(dir, file, "README.md");
+    const readmeFile = join(dir, file, 'README.md')
     if (!fs.existsSync(readmeFile)) {
-      return;
+      return
     }
-    const content = fs.readFileSync(readmeFile, "utf8");
-    readmeContent += content + "\n";
+    const content = fs.readFileSync(readmeFile, 'utf8')
+    readmeContent += content + '\n'
   }
-});
+})
 
-fs.writeFileSync("README.md", readmeContent);
+fs.writeFileSync('README.md', readmeContent)

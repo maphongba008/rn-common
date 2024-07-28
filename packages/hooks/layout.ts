@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { LayoutChangeEvent, LayoutRectangle } from "react-native";
+import { useState, useCallback } from 'react'
+import { LayoutChangeEvent, LayoutRectangle } from 'react-native'
 
 /**
  * Custom hook that provides layout information and a callback for handling layout changes.
@@ -11,15 +11,15 @@ export function useLayout() {
     y: 0,
     width: 0,
     height: 0,
-  });
+  })
 
   const onLayout = useCallback(
     (e: LayoutChangeEvent) => setLayout(e.nativeEvent.layout),
-    []
-  );
+    [],
+  )
 
   return {
     onLayout,
     ...layout,
-  };
+  }
 }

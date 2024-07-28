@@ -1,3 +1,3 @@
-export * from "./keyboard";
-export * from "./clipboard";
-export * from "./appState";
+export * from './keyboard'
+export * from './clipboard'
+export * from './appState'

@@ -1,7 +1,7 @@
-import React from "react";
-import { BackHandler, Keyboard, Platform } from "react-native";
+import React from 'react'
+import { BackHandler, Keyboard, Platform } from 'react-native'
 
-const isAndroid = Platform.OS === "android";
+const isAndroid = Platform.OS === 'android'
 
 /**
  * A custom React hook that provides the current height of the on-screen keyboard.
@@ -15,30 +15,30 @@ const isAndroid = Platform.OS === "android";
  * console.log(`Keyboard height: ${keyboardHeight}px`);
  */
 export const useKeyboardHeight = () => {
-  const [keyboardHeight, setKeyboardHeight] = React.useState(0);
+  const [keyboardHeight, setKeyboardHeight] = React.useState(0)
 
   React.useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
-      isAndroid ? "keyboardDidShow" : "keyboardWillShow",
+      isAndroid ? 'keyboardDidShow' : 'keyboardWillShow',
       (event) => {
-        setKeyboardHeight(event.endCoordinates.height);
-      }
-    );
+        setKeyboardHeight(event.endCoordinates.height)
+      },
+    )
 
     const keyboardDidHideListener = Keyboard.addListener(
-      isAndroid ? "keyboardDidHide" : "keyboardWillHide",
+      isAndroid ? 'keyboardDidHide' : 'keyboardWillHide',
       () => {
-        setKeyboardHeight(0);
-      }
-    );
+        setKeyboardHeight(0)
+      },
+    )
 
     return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
-    };
-  }, []);
-  return keyboardHeight;
-};
+      keyboardDidShowListener.remove()
+      keyboardDidHideListener.remove()
+    }
+  }, [])
+  return keyboardHeight
+}
 
 /**
  * A custom React hook that determines whether the on-screen keyboard is currently visible.
@@ -52,8 +52,8 @@ export const useKeyboardHeight = () => {
  * console.log(`Is keyboard visible: ${isKeyboardVisible}`);
  */
 export const useIsKeyboardShow = () => {
-  return useKeyboardHeight() > 0;
-};
+  return useKeyboardHeight() > 0
+}
 
 /**
  * A custom React hook that allows you to handle the hardware back button press on Android devices.
@@ -71,8 +71,8 @@ export const useIsKeyboardShow = () => {
  */
 export function useBackHandler(handler: () => boolean) {
   React.useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", handler);
+    BackHandler.addEventListener('hardwareBackPress', handler)
 
-    return () => BackHandler.removeEventListener("hardwareBackPress", handler);
-  }, [handler]);
+    return () => BackHandler.removeEventListener('hardwareBackPress', handler)
+  }, [handler])
 }

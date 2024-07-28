@@ -1,0 +1,10 @@
+{
+  "name": "@rn-common/bottom-sheet",
+  "version": "1.0.0",
+  "main": "index.tsx",
+  "license": "MIT",
+  "dependencies": {
+    "@rn-common/event-emitter": "^1.0.0",
+    "react-native-reanimated": "3.10.1"
+  }
+}

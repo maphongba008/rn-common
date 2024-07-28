@@ -1,4 +1,4 @@
-import * as Crypto from "expo-crypto";
+import * as Crypto from 'expo-crypto'
 
 /**
  * Generates a universally unique identifier (UUID).
@@ -12,8 +12,8 @@ import * as Crypto from "expo-crypto";
  * console.log(`Generated UUID: ${id}`);
  */
 export const uuid = () => {
-  return Crypto.randomUUID();
-};
+  return Crypto.randomUUID()
+}
 
 /**
  * Formats a string by replacing placeholders with corresponding values from an arguments object.
@@ -31,9 +31,9 @@ export const uuid = () => {
  * const result = format(template, values); // "Hello, Alice! Welcome to Wonderland."
  */
 export const formatTemplate = (template: string, args: Record<string, any>) => {
-  let formattedText = template;
+  let formattedText = template
   Object.entries(args).forEach(([key, value]) => {
-    formattedText = formattedText.replace(`{{${key}}}`, String(value));
-  });
-  return formattedText;
-};
+    formattedText = formattedText.replace(`{{${key}}}`, String(value))
+  })
+  return formattedText
+}
