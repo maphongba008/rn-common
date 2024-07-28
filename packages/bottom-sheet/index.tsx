@@ -111,3 +111,9 @@ const styles = StyleSheet.create({
 })
 
 export default BottomSheet
+
+export type SheetProps<T> = {
+  type: string
+  data: T
+  close: () => void
+}
