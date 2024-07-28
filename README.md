@@ -85,14 +85,6 @@ const CustomBottomSheet = ({
 - `data`: Data passed when showing the bottom sheet.
 - `close`: A function to close the bottom sheet.
 
-## Contributing
-
-Contributions are welcome! Feel free to open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
-
 # [`@rn-common/toast`](./packages/toast)
 
 This component provides a simple and customizable toast notification system for React Native applications. It uses `react-native-reanimated` for animations and `react-native-screens` for overlay support.
@@ -185,12 +177,4 @@ Customize the styles by modifying the `toastMap` configuration:
 
 - `indicatorStyle`: Style for the indicator on the left side of the toast.
 - `textStyle`: Style for the toast message text.
-
-## Contributing
-
-Contributions are welcome! Feel free to open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
 
