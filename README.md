@@ -45,9 +45,16 @@ Wrap your app or a section of your app with the `Provider` component to enable b
 ```jsx
 import BottomSheet from '@rn-common/bottom-sheet'
 
-const App = () => (
-  <BottomSheet.Provider>{/* Your app components */}</BottomSheet.Provider>
-)
+const App = () => {
+  const config = {
+    backgroundColor: '#FFFFFF',
+  } // optional
+  return (
+    <BottomSheet.Provider config={config}>
+      {/* Your app components */}
+    </BottomSheet.Provider>
+  )
+}
 ```
 
 ### 2. **Registering a Bottom Sheet Component**
@@ -67,7 +74,11 @@ BottomSheet.register('customSheet', CustomBottomSheet)
 To display a bottom sheet, use the `BottomSheet.show` method.
 
 ```jsx
-BottomSheet.show('customSheet', { someData: 'value' })
+BottomSheet.show(
+  'customSheet',
+  { someData: 'value' },
+  { backgroundColor: '#FF0000' }, // this will override the provider's config
+)
 ```
 
 ### 4. **Hiding a Bottom Sheet**

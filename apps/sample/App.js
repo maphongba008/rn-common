@@ -41,7 +41,11 @@ BottomSheet.register('bottom-sheet-1', SampleSheet)
 export default function App() {
   return (
     <SafeAreaProvider>
-      <BottomSheet.Provider>
+      <BottomSheet.Provider
+        config={{
+          backgroundColor: 'blue',
+        }}
+      >
         <View style={styles.container}>
           <Text>Open up App.js to start working on your app!</Text>
 

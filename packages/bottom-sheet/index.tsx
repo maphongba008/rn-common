@@ -12,13 +12,15 @@ const BottomSheetItem = ({
   onClosed,
   type,
   data,
+  config,
 }: {
   onClosed: () => void
   type: string
   data: any
+  config: SheetConfig
 }) => {
   const { animatedContentStyle, animatedContainerStyle, runAnimation } =
-    useBottomSheetItemAnimation()
+    useBottomSheetItemAnimation(config.backgroundColor)
   const Component = sheetMap[type]
   React.useEffect(() => {
     runAnimation(1)
@@ -57,11 +59,27 @@ const BottomSheetItem = ({
   )
 }
 
-const Provider = ({ children }: { children: any }) => {
-  const [sheets, setSheets] = React.useState([])
+type SheetConfig = {
+  backgroundColor?: string
+}
+
+type Sheet = {
+  type: string
+  props: any
+  config?: SheetConfig
+}
+
+const Provider = ({
+  children,
+  config,
+}: {
+  children: any
+  config?: SheetConfig
+}) => {
+  const [sheets, setSheets] = React.useState<Sheet[]>([])
   React.useEffect(() => {
-    return subscribe('showBottomSheet', ({ type, props }) => {
-      setSheets((prevSheets) => [...prevSheets, { type, props }])
+    return subscribe('showBottomSheet', (d) => {
+      setSheets((prevSheets) => [...prevSheets, d])
     })
   }, [])
   return (
@@ -69,17 +87,18 @@ const Provider = ({ children }: { children: any }) => {
       {children}
       {sheets.length > 0 && (
         <Animated.View style={StyleSheet.absoluteFill}>
-          {sheets.map(({ type, props }) => {
+          {sheets.map((mSheet) => {
             return (
               <BottomSheetItem
-                key={type}
+                key={mSheet.type}
                 onClosed={() => {
                   setSheets((prevSheets) =>
-                    prevSheets.filter((sheet) => sheet.type !== type),
+                    prevSheets.filter((sheet) => sheet.type !== mSheet.type),
                   )
                 }}
-                data={props}
-                type={type}
+                config={{ ...config, ...mSheet.config }}
+                data={mSheet.props}
+                type={mSheet.type}
               />
             )
           })}
@@ -96,8 +115,8 @@ const BottomSheet = {
   register: (type: string, component: React.ElementType) => {
     sheetMap[type] = component
   },
-  show: (type: string, props: any) => {
-    emit('showBottomSheet', { type, props })
+  show: (type: string, props: any, config?: SheetConfig) => {
+    emit('showBottomSheet', { type, props, config })
   },
   hide: (type: string) => {
     emit('hideBottomSheet', { type })
@@ -116,4 +135,5 @@ export type SheetProps<T> = {
   type: string
   data: T
   close: () => void
+  config?: SheetConfig
 }
