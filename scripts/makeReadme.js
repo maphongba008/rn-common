@@ -4,7 +4,7 @@ const dir = './packages'
 
 const join = (...args) => args.join('/')
 
-let headers = ['[This file is auto-generated, do not edit it manually']
+let headers = ['[This file is auto-generated, do not edit it manually]']
 let readmeContent = ''
 fs.readdirSync(dir).forEach((file) => {
   if (fs.statSync(join(dir, file)).isDirectory()) {
@@ -20,4 +20,4 @@ fs.readdirSync(dir).forEach((file) => {
   }
 })
 
-fs.writeFileSync('README.md', headers.join('\n') + '\n\n' + readmeContent)
+fs.writeFileSync('README.md', headers.join('\n\n') + '\n\n' + readmeContent)
