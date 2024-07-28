@@ -14,9 +14,7 @@ fs.readdirSync(dir).forEach((file) => {
     }
     const content = fs.readFileSync(readmeFile, 'utf8')
     readmeContent += content + '\n'
-    headers.push(
-      `[@rn-common/${file}](https://github.com/maphongba008/rn-common#rn-common${file})`,
-    )
+    headers.push(`[@rn-common/${file}](#rn-common${file})`)
   }
 })
 

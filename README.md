@@ -1,12 +1,12 @@
 [This file is auto-generated, do not edit it manually]
 
-[@rn-common/bottom-sheet](https://github.com/maphongba008/rn-common#rn-commonbottom-sheet)
+[@rn-common/bottom-sheet](#rn-commonbottom-sheet)
 
-[@rn-common/device-info](https://github.com/maphongba008/rn-common#rn-commondevice-info)
+[@rn-common/device-info](#rn-commondevice-info)
 
-[@rn-common/event-emitter](https://github.com/maphongba008/rn-common#rn-commonevent-emitter)
+[@rn-common/event-emitter](#rn-commonevent-emitter)
 
-[@rn-common/toast](https://github.com/maphongba008/rn-common#rn-commontoast)
+[@rn-common/toast](#rn-commontoast)
 
 # [`@rn-common/bottom-sheet`](./packages/bottom-sheet)
 
