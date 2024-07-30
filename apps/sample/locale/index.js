@@ -1,10 +1,13 @@
 import { createLocaleReducer } from '@rn-common/locale'
 import en from './en.json'
 import vi from './vi.json'
-const {
-  slice: localeSlide,
+
+export const {
+  slice: localeSlice,
   setLanguage,
   useStrings,
+  useAvailableLanguages,
+  useLanguage,
 } = createLocaleReducer({
   initialLanguage: 'en',
   languageMap: {
@@ -12,5 +15,3 @@ const {
     vi,
   },
 })
-
-export { localeSlide, setLanguage, useStrings }

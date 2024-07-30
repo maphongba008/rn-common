@@ -25,7 +25,7 @@ export const createLocaleReducer = <T>(config: LocaleConfig<T>) => {
 
   const { setLanguage } = slice.actions
   const useStrings = () => {
-    return useSelector((state: any) => {
+    return useSelector((state: { locale: LocaleState }) => {
       const language = state[slice.name].language
       if (config.languageMap[language]) {
         return config.languageMap[language]
@@ -33,9 +33,19 @@ export const createLocaleReducer = <T>(config: LocaleConfig<T>) => {
       return config.languageMap[config.initialLanguage]
     })
   }
+  const useLanguage = () => {
+    return useSelector((state: { locale: LocaleState }) => {
+      return state[slice.name].language
+    })
+  }
+  const useAvailableLanguages = () => {
+    return Object.keys(config.languageMap)
+  }
   return {
     slice,
     setLanguage,
     useStrings,
+    useLanguage,
+    useAvailableLanguages,
   }
 }

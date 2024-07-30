@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { StatusBar } from 'expo-status-bar'
 import {
   StyleSheet,
@@ -17,6 +18,12 @@ import { openImagePicker } from '@rn-common/image-picker'
 import { Provider, useDispatch } from 'react-redux'
 import { store } from './store'
 import { setLanguage, useStrings } from './locale'
+import {
+  createThemedStyleSheet,
+  setTheme,
+  useAvailableThemes,
+  useThemeName,
+} from './theme'
 logger.setSeverity('info')
 
 const SampleSheet = ({ data, type, close }) => {
@@ -42,19 +49,33 @@ const SampleSheet = ({ data, type, close }) => {
 
 BottomSheet.register('bottom-sheet-1', SampleSheet)
 
+const getStyles = createThemedStyleSheet((theme) => ({
+  container: {
+    backgroundColor: theme.background,
+  },
+  text: {
+    color: theme.primaryText,
+  },
+}))
+
 const Main = () => {
   const strings = useStrings()
   const dispatch = useDispatch()
+  const styles2 = getStyles()
+  const availableThemes = useAvailableThemes()
+  const currentTheme = useThemeName()
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>{strings.common.hello}</Text>
+    <View style={[styles.container, styles2.container]}>
+      <Text style={styles2.text}>
+        Open up App.js to start working on your app!
+      </Text>
+      <Text style={styles2.text}>{strings.common.hello}</Text>
       <TouchableOpacity
         onPress={() => {
           dispatch(setLanguage('vi'))
         }}
       >
-        <Text>Change language to Vi</Text>
+        <Text style={styles2.text}>Change language to Vi</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={async () => {
@@ -63,35 +84,35 @@ const Main = () => {
           console.log({ deviceInfo, appInfo })
         }}
       >
-        <Text>Print info</Text>
+        <Text style={styles2.text}>Print info</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           logger.debug('This is debug log')
         }}
       >
-        <Text>Add debug log</Text>
+        <Text style={styles2.text}>Add debug log</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           logger.info('This is info log')
         }}
       >
-        <Text>Add info log</Text>
+        <Text style={styles2.text}>Add info log</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           logger.error('This is error log')
         }}
       >
-        <Text>Add error log</Text>
+        <Text style={styles2.text}>Add error log</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           logger.warn('This is warn log')
         }}
       >
-        <Text>Add warn log</Text>
+        <Text style={styles2.text}>Add warn log</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -99,21 +120,29 @@ const Main = () => {
           Toast.show('success', 'This is success toast')
         }}
       >
-        <Text>Show success toast</Text>
+        <Text style={styles2.text}>Show success toast</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           Toast.show('error', 'This is error toast')
         }}
       >
-        <Text>Show error toast</Text>
+        <Text style={styles2.text}>Show error toast</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           BottomSheet.show('bottom-sheet-1', { name: 'Aaron', age: 30 })
         }}
       >
-        <Text>Show sample sheet</Text>
+        <Text style={styles2.text}>Show sample sheet</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => {
+          dispatch(setTheme(availableThemes.find((x) => x !== currentTheme)))
+        }}
+      >
+        <Text style={styles2.text}>Switch theme</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -133,7 +162,7 @@ const Main = () => {
             })
         }}
       >
-        <Text>Show image picker</Text>
+        <Text style={styles2.text}>Show image picker</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -172,7 +201,7 @@ const Main = () => {
           })
         }}
       >
-        <Text>Show actions sheet</Text>
+        <Text style={styles2.text}>Show actions sheet</Text>
       </TouchableOpacity>
 
       <StatusBar style="auto" />

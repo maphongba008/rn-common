@@ -1,0 +1,17 @@
+{
+  "background": "#FFFFFF",
+  "brandingPrimary": "#4DB6AC",
+  "onBrandingPrimary": "#FFFFFF",
+  "cardBackground": "#F5F5F5",
+  "navigationBar": "#E0E0E0",
+  "primaryText": "#212121",
+  "secondaryText": "#757575",
+  "borderOrDisabled": "#E3E3E3",
+  "toastSuccess": "#4CAF50",
+  "toastError": "#F44336",
+  "red": "#FF5722",
+  "green": "#43A047",
+  "orange": "#FF9800",
+  "blue": "#2196F3",
+  "headerTab": "#33333"
+}

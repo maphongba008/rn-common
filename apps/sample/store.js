@@ -1,9 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { localeSlide } from './locale/index'
-
+import { localeSlice } from './locale/index'
+import { themeSlice } from './theme'
 export const store = configureStore({
   reducer: combineReducers({
-    [localeSlide.name]: localeSlide.reducer,
+    [localeSlice.name]: localeSlice.reducer,
+    [themeSlice.name]: themeSlice.reducer,
   }),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
