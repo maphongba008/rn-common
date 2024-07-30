@@ -1,0 +1,10 @@
+{
+  "name": "@rn-common/locale",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
+    "react-redux": "^9.1.2"
+  }
+}

@@ -1,0 +1,3 @@
+node scripts/checkHash.js
+node scripts/makeReadme.js
+git add .

@@ -1,0 +1,11 @@
+{
+  "name": "@rn-common/image-picker",
+  "version": "0.1.0",
+  "main": "index.tsx",
+  "license": "MIT",
+  "dependencies": {
+    "@rn-common/action-sheet": "^0.1.0",
+    "expo-image-manipulator": "~12.0.5",
+    "expo-image-picker": "~15.0.7"
+  }
+}

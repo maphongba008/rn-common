@@ -1,0 +1,8 @@
+{
+  "common": {
+    "hello": "Hello, {{name}}!"
+  },
+  "home": {
+    "title": "Home"
+  }
+}

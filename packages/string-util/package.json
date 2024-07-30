@@ -1,0 +1,9 @@
+{
+  "name": "@rn-common/string-util",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "expo-crypto": "^13.0.2"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@rn-common/action-sheet",
+  "version": "0.1.0",
+  "main": "index.tsx",
+  "license": "MIT",
+  "dependencies": {
+    "@rn-common/bottom-sheet": "*"
+  }
+}
