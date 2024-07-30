@@ -38,6 +38,7 @@ export const createLocaleReducer = <T>(config: LocaleConfig<T>) => {
       return state[slice.name].language
     })
   }
+
   const useAvailableLanguages = () => {
     return Object.keys(config.languageMap)
   }

@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { execSync } = require('child_process')
+const { getNpmVersion, isVersionGreater } = require('./utils')
 const { hashElement } = require('folder-hash')
 const path = require('path')
 const metadataPath = './scripts/packageHashMetadata.json'
@@ -32,7 +32,6 @@ const increaseVersion = (pkg, type = 'patch') => {
   const [major, minor, patch] = String(version)
     .split('.')
     .map((e) => {
-      console.log('e is', e)
       return parseInt(e, 10)
     })
   if (type === 'minor') {
@@ -62,6 +61,11 @@ const main = async () => {
     } else {
       const { hash: oldHash, version: oldVersion } = metadata[folder]
       if (oldHash !== hash && oldVersion === getVersion(folder)) {
+        const npmVersion = await getNpmVersion(folder)
+        if (isVersionGreater(oldVersion, npmVersion)) {
+          continue
+        }
+        // TODO: check if the version is already greater than npm version
         const newVersion = increaseVersion(folder)
         console.log(
           `Hash of ${folder} has changed, increase version to`,
@@ -85,9 +89,9 @@ const main = async () => {
           version: newVersion,
         }
       } else if (oldHash !== hash && oldVersion !== getVersion(folder)) {
-        console.log('Already increased')
+        // console.log('Already increased')
       } else {
-        console.log('Not changed')
+        // console.log('Not changed')
       }
     }
   }
