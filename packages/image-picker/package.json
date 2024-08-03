@@ -1,16 +1,11 @@
 {
   "name": "@rn-common/image-picker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "index.tsx",
   "license": "MIT",
   "dependencies": {
-    "@rn-common/action-sheet": "*"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-native": ">=0.63.4",
-    "expo-image-manipulator": ">=12",
-    "expo-image-picker": ">=15",
-    "@rn-common/action-sheet": "*"
+    "@rn-common/action-sheet": "^0.1.0",
+    "expo-image-manipulator": "*",
+    "expo-image-picker": "*"
   }
 }
