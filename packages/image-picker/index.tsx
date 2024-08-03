@@ -78,7 +78,7 @@ const resizeImage = async (
   return image
 }
 
-type ImagePickerConfig = {
+export type ImagePickerConfig = {
   title?: string
   photoLibraryTitle?: string
   cameraTitle?: string
