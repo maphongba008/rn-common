@@ -90,6 +90,10 @@ const main = async () => {
         }
       } else if (oldHash !== hash && oldVersion !== getVersion(folder)) {
         console.log('Already increased')
+        metadata[folder] = {
+          hash,
+          version: getVersion(folder),
+        }
       } else {
         console.log('Not changed')
       }
