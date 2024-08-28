@@ -89,9 +89,9 @@ const main = async () => {
           version: newVersion,
         }
       } else if (oldHash !== hash && oldVersion !== getVersion(folder)) {
-        // console.log('Already increased')
+        console.log('Already increased')
       } else {
-        // console.log('Not changed')
+        console.log('Not changed')
       }
     }
   }
