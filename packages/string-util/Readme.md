@@ -4,16 +4,10 @@ This module provides utilities for generating universally unique identifiers (UU
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/string-util
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/string-util
+npx expo install @rn-common/string-util expo-crypto
 ```
 
 ## Utilities

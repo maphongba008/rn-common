@@ -4,16 +4,10 @@ This module provides a logging utility for React Native applications, leveraging
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/logger
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/logger
+npx expo install @rn-common/logger expo-file-system
 ```
 
 ## Usage

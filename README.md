@@ -86,20 +86,14 @@ The `showActionSheet` function takes an `ActionSheet` object with the following 
 
 ## Overview
 
-The `BottomSheet` component is a reusable React Native component that provides a modal bottom sheet UI. It includes a provider, registration method for custom bottom sheets, and methods to show and hide sheets.
+The `BottomSheet` component is a reusable React Native component that provides a modal bottom sheet UI by using react-native-reanimated. It includes a provider, registration method for custom bottom sheets, and methods to show and hide sheets.
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/bottom-sheet
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/bottom-sheet
+npx expo install @rn-common/bottom-sheet react-native-reanimated
 ```
 
 ## Usage
@@ -186,16 +180,10 @@ This module provides utility functions to retrieve information about the device 
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/device-info
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/device-info
+npx expo install @rn-common/device-info expo-application expo-device
 ```
 
 ## Functions
@@ -319,16 +307,10 @@ This module provides a set of utility functions for working with the file system
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/file
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/file
+npx expo install @rn-common/file expo-file-system
 ```
 
 ## Exports
@@ -521,16 +503,10 @@ This repository contains a collection of custom React hooks designed to simplify
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/hooks
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/hooks
+npx expo install @rn-common/hooks expo-clipboard
 ```
 
 ## Hooks
@@ -716,16 +692,10 @@ This utility provides a convenient way to pick and resize images using the camer
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/image-picker
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/image-picker
+npx expo install @rn-common/image-picker expo-image-manipulator expo-image-picker
 ```
 
 ## Features
@@ -899,16 +869,10 @@ This module provides a logging utility for React Native applications, leveraging
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/logger
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/logger
+npx expo install @rn-common/logger expo-file-system
 ```
 
 ## Usage
@@ -959,16 +923,10 @@ This module provides utilities for generating universally unique identifiers (UU
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/string-util
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/string-util
+npx expo install @rn-common/string-util expo-crypto
 ```
 
 ## Utilities
@@ -1183,7 +1141,7 @@ This component provides a simple and customizable toast notification system for 
 Install using npm:
 
 ```bash
-npm install @rn-common/toast
+npx expo install @rn-common/toast react-native-reanimated react-native-safe-area-context react-native-screens
 ```
 
 or yarn:

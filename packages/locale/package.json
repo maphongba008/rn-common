@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "index.ts",
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "react-redux": "^9.1.2"
   }

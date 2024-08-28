@@ -2,20 +2,14 @@
 
 ## Overview
 
-The `BottomSheet` component is a reusable React Native component that provides a modal bottom sheet UI. It includes a provider, registration method for custom bottom sheets, and methods to show and hide sheets.
+The `BottomSheet` component is a reusable React Native component that provides a modal bottom sheet UI by using react-native-reanimated. It includes a provider, registration method for custom bottom sheets, and methods to show and hide sheets.
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/bottom-sheet
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/bottom-sheet
+npx expo install @rn-common/bottom-sheet react-native-reanimated
 ```
 
 ## Usage

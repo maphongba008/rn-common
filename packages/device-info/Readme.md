@@ -6,16 +6,10 @@ This module provides utility functions to retrieve information about the device 
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/device-info
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/device-info
+npx expo install @rn-common/device-info expo-application expo-device
 ```
 
 ## Functions

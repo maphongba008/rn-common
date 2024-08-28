@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "main": "index.ts",
   "license": "MIT",
-  "dependencies": {
-    "expo-application": "^5.9.1",
-    "expo-device": "^6.0.2"
+  "peerDependencies": {
+    "expo-application": "*",
+    "expo-device": "*"
   }
 }

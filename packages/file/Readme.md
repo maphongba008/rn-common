@@ -4,16 +4,10 @@ This module provides a set of utility functions for working with the file system
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/file
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/file
+npx expo install @rn-common/file expo-file-system
 ```
 
 ## Exports

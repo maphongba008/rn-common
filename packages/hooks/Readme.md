@@ -4,16 +4,10 @@ This repository contains a collection of custom React hooks designed to simplify
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/hooks
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/hooks
+npx expo install @rn-common/hooks expo-clipboard
 ```
 
 ## Hooks

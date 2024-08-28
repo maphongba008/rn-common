@@ -4,16 +4,10 @@ This utility provides a convenient way to pick and resize images using the camer
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```sh
-npm install @rn-common/image-picker
-```
-
-or yarn:
-
-```sh
-yarn add @rn-common/image-picker
+npx expo install @rn-common/image-picker expo-image-manipulator expo-image-picker
 ```
 
 ## Features
