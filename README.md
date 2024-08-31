@@ -1138,16 +1138,10 @@ This component provides a simple and customizable toast notification system for 
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```bash
 npx expo install @rn-common/toast react-native-reanimated react-native-safe-area-context react-native-screens
-```
-
-or yarn:
-
-```bash
-yarn add @rn-common/toast
 ```
 
 ## Usage
