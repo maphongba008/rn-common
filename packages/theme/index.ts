@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { useSelector } from 'react-redux'
 import { ViewStyle, TextStyle, ImageStyle, StyleSheet } from 'react-native'
 
@@ -20,7 +20,7 @@ export const createThemeReducer = <T>(config: ThemeConfig<T>) => {
       theme: config.initialTheme,
     },
     reducers: {
-      setTheme: (state, action) => {
+      setTheme: (state, action: PayloadAction<string>) => {
         state.theme = action.payload
       },
     },

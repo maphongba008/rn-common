@@ -1020,7 +1020,7 @@ const themeMap = {
 Use the `createThemeReducer` function to create a slice and associated actions.
 
 ```javascript
-import { createThemeReducer } from './path-to-theme-reducer-file'
+import { createThemeReducer } from '@rn-common/theme'
 
 const config = {
   themeMap,
