@@ -24,6 +24,7 @@ import {
   useAvailableThemes,
   useThemeName,
 } from './theme'
+import { Dialog } from '../../packages/dialog'
 logger.setSeverity('info')
 
 const SampleSheet = ({ data, type, close }) => {
@@ -64,6 +65,7 @@ const Main = () => {
   const styles2 = getStyles()
   const availableThemes = useAvailableThemes()
   const currentTheme = useThemeName()
+  const [show, setShow] = React.useState(false)
   return (
     <View style={[styles.container, styles2.container]}>
       <Text style={styles2.text}>
@@ -203,8 +205,34 @@ const Main = () => {
       >
         <Text style={styles2.text}>Show actions sheet</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => setShow(true)}>
+        <Text style={styles2.text}>Show dialog</Text>
+      </TouchableOpacity>
 
       <StatusBar style="auto" />
+
+      <Dialog show={show} onRequestClose={() => setShow(false)}>
+        <View
+          style={{
+            backgroundColor: 'red',
+            borderRadius: 10,
+            height: 100,
+            marginHorizontal: 24,
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'green',
+              borderRadius: 10,
+              height: 50,
+              width: 50,
+            }}
+            onPress={() => setShow(false)}
+          >
+            <Text style={{ color: '#FFF' }}>Close dialog</Text>
+          </TouchableOpacity>
+        </View>
+      </Dialog>
     </View>
   )
 }

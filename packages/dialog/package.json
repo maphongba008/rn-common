@@ -1,0 +1,9 @@
+{
+  "name": "dialog",
+  "version": "0.1.1",
+  "main": "index.tsx",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native-reanimated": "*"
+  }
+}
