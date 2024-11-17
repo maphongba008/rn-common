@@ -36,7 +36,6 @@ export const Dialog = ({
   const { height } = useWindowDimensions()
   const [isAnimationFinish, setIsAnimationFinish] = React.useState(true)
   const animation = useSharedValue(0)
-  console.log({ cancelable })
   const runAnimation = React.useCallback(
     (_show: boolean) => {
       setIsAnimationFinish(false)
@@ -50,7 +49,7 @@ export const Dialog = ({
     },
     [animation],
   )
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     runAnimation(show)
   }, [runAnimation, show])
 
