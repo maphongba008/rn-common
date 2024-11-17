@@ -1094,7 +1094,7 @@ const themeMap = {
 Use the `createThemeReducer` function to create a slice and associated actions.
 
 ```javascript
-import { createThemeReducer } from './path-to-theme-reducer-file'
+import { createThemeReducer } from '@rn-common/theme'
 
 const config = {
   themeMap,
@@ -1212,16 +1212,10 @@ This component provides a simple and customizable toast notification system for 
 
 ## Installation
 
-Install using npm:
+Install using:
 
 ```bash
 npx expo install @rn-common/toast react-native-reanimated react-native-safe-area-context react-native-screens
-```
-
-or yarn:
-
-```bash
-yarn add @rn-common/toast
 ```
 
 ## Usage
