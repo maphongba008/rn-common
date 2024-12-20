@@ -1,5 +1,5 @@
 import { Keyboard } from 'react-native'
-import { Action, manipulateAsync, SaveFormat } from 'expo-image-manipulator'
+import { ImageManipulator, SaveFormat } from 'expo-image-manipulator'
 import * as EXImagePicker from 'expo-image-picker'
 import { showActionSheet } from '@rn-common/action-sheet'
 
@@ -11,11 +11,13 @@ type Image = {
   width?: number
   height?: number
   exif?: any
+  base64?: string | null
 }
 
 type ResizeOptions = {
   compressImageMaxWidth?: number
   compressImageMaxHeight?: number
+  base64?: boolean
 }
 
 /**
@@ -28,54 +30,47 @@ const resizeImage = async (
   image: Image,
   options?: ResizeOptions,
 ): Promise<Image> => {
-  if (!options?.compressImageMaxHeight && !options?.compressImageMaxWidth) {
+  if (!options) {
     return image
   }
+  const {
+    compressImageMaxHeight = COMPRESS_IMAGE_MAX_SIZE,
+    compressImageMaxWidth = COMPRESS_IMAGE_MAX_SIZE,
+    base64,
+  } = options
 
   const oldWidth = image.width || 0
   const oldHeight = image.height || 0
-  const maxWidth = options?.compressImageMaxWidth || COMPRESS_IMAGE_MAX_SIZE
-  const maxHeight = options?.compressImageMaxHeight || COMPRESS_IMAGE_MAX_SIZE
 
-  const shouldResizeWidth = oldWidth > maxWidth
-  const shouldResizeHeight = oldHeight > maxHeight
+  const shouldResizeWidth = oldWidth > compressImageMaxWidth
+  const shouldResizeHeight = oldHeight > compressImageMaxHeight
+
+  const context = ImageManipulator.manipulate(image.uri)
 
   if (shouldResizeWidth || shouldResizeHeight) {
-    const newHeight = maxHeight
+    const newHeight = compressImageMaxHeight
     const newWidth = (oldWidth / oldHeight) * newHeight
-    const actions: Action[] = []
-    if (image.exif?.ImageWidth && image.exif?.ImageWidth !== oldWidth) {
-      actions.push({
-        resize: {
-          width: newHeight,
-          height: newWidth,
-        },
-      })
-      actions.push({
-        rotate: image.exif?.Orientation === 6 ? -90 : 90,
-      })
-    } else {
-      actions.push({
-        resize: {
-          width: newWidth,
-          height: newHeight,
-        },
-      })
-    }
-
-    const result = await manipulateAsync(image.uri, actions, {
-      compress: COMPRESS_IMAGE_QUALITY,
-      format: SaveFormat.JPEG,
+    context.resize({
+      width: newHeight,
+      height: newWidth,
     })
-
-    return {
-      ...image,
-      width: result.width,
-      height: result.height,
-      uri: result.uri,
+    if (image.exif?.ImageWidth && image.exif?.ImageWidth !== oldWidth) {
+      context.rotate(image.exif?.Orientation === 6 ? -90 : 90)
     }
   }
-  return image
+  const imgRef = await context.renderAsync()
+  const imageResult = await imgRef.saveAsync({
+    compress: COMPRESS_IMAGE_QUALITY,
+    format: SaveFormat.JPEG,
+    base64,
+  })
+  return {
+    ...image,
+    width: imageResult.width,
+    height: imageResult.height,
+    uri: imageResult.uri,
+    base64: imageResult.base64,
+  }
 }
 
 export type ImagePickerConfig = {
@@ -88,18 +83,28 @@ export type ImagePickerConfig = {
   aspect?: [number, number]
   quality?: number
   allowsMultipleSelection?: boolean
+  base64?: boolean
+  mediaTypes: ['images', 'videos', 'livePhotos']
 }
 
 export const openImageCameraPicker = async (config: ImagePickerConfig) => {
-  const { aspect = [4, 3], quality = 0.8, maxHeight, maxWidth } = config
+  const {
+    aspect = [4, 3],
+    quality = 0.8,
+    maxHeight,
+    maxWidth,
+    base64,
+    mediaTypes,
+  } = config
   const { status } = await EXImagePicker.requestCameraPermissionsAsync()
   if (status !== 'granted') {
     throw 'PERMISSION_DENIED'
   }
   const res = await EXImagePicker.launchCameraAsync({
-    mediaTypes: EXImagePicker.MediaTypeOptions.Images,
+    mediaTypes,
     aspect,
     quality,
+    base64,
   })
   if (res.canceled || !res.assets.length) {
     throw 'CANCELLED'
@@ -118,6 +123,8 @@ export const openImageLibraryPicker = async (config: ImagePickerConfig) => {
     allowsMultipleSelection = false,
     maxHeight,
     maxWidth,
+    base64,
+    mediaTypes,
   } = config
 
   const { status } = await EXImagePicker.requestMediaLibraryPermissionsAsync()
@@ -125,10 +132,11 @@ export const openImageLibraryPicker = async (config: ImagePickerConfig) => {
     throw new Error('PERMISSION_DENIED')
   }
   const res = await EXImagePicker.launchImageLibraryAsync({
-    mediaTypes: EXImagePicker.MediaTypeOptions.Images,
+    mediaTypes,
     allowsMultipleSelection,
     aspect,
     quality,
+    base64,
   })
   if (res.canceled || !res.assets.length) {
     throw new Error('CANCELLED')
