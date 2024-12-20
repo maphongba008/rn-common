@@ -1,9 +1,13 @@
 {
   "name": "@rn-common/action-sheet",
-  "version": "0.1.1",
+  "version": "52.0.0",
   "main": "index.tsx",
   "license": "MIT",
   "dependencies": {
     "@rn-common/bottom-sheet": "*"
+  },
+  "peerDependencies": {
+    "react-native": "0.76.5",
+    "expo": "~52.0.20"
   }
 }

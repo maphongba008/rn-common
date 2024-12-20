@@ -1,6 +1,6 @@
 {
   "name": "@rn-common/logger",
-  "version": "0.1.1",
+  "version": "52.0.0",
   "main": "index.ts",
   "license": "MIT",
   "dependencies": {
@@ -8,6 +8,8 @@
     "react-native-logs": "^5.1.0"
   },
   "peerDependencies": {
-    "expo-file-system": "*"
+    "expo-file-system": "~18.0.6",
+    "react-native": "0.76.5",
+    "expo": "~52.0.20"
   }
 }

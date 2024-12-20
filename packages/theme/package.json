@@ -1,6 +1,10 @@
 {
   "name": "@rn-common/theme",
-  "version": "0.1.4",
+  "version": "52.0.0",
   "main": "index.ts",
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": "0.76.5",
+    "expo": "~52.0.20"
+  }
 }
