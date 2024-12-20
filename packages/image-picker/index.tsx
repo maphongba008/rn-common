@@ -84,7 +84,7 @@ export type ImagePickerConfig = {
   quality?: number
   allowsMultipleSelection?: boolean
   base64?: boolean
-  mediaTypes: ['images', 'videos', 'livePhotos']
+  mediaTypes: ('images' | 'videos' | 'livePhotos')[]
 }
 
 export const openImageCameraPicker = async (config: ImagePickerConfig) => {
