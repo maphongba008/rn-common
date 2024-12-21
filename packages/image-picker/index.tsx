@@ -51,8 +51,8 @@ const resizeImage = async (
     const newHeight = compressImageMaxHeight
     const newWidth = (oldWidth / oldHeight) * newHeight
     context.resize({
-      width: newHeight,
-      height: newWidth,
+      width: newWidth,
+      height: newHeight,
     })
     if (image.exif?.ImageWidth && image.exif?.ImageWidth !== oldWidth) {
       context.rotate(image.exif?.Orientation === 6 ? -90 : 90)
@@ -112,6 +112,7 @@ export const openImageCameraPicker = async (config: ImagePickerConfig) => {
   const image = await resizeImage(res.assets[0], {
     compressImageMaxWidth: maxWidth,
     compressImageMaxHeight: maxHeight,
+    base64,
   })
   return [image]
 }
@@ -138,6 +139,7 @@ export const openImageLibraryPicker = async (config: ImagePickerConfig) => {
     quality,
     base64,
   })
+  console.log('res', res)
   if (res.canceled || !res.assets.length) {
     throw new Error('CANCELLED')
   }
@@ -145,6 +147,7 @@ export const openImageLibraryPicker = async (config: ImagePickerConfig) => {
     resizeImage(asset, {
       compressImageMaxWidth: maxWidth,
       compressImageMaxHeight: maxHeight,
+      base64,
     }),
   )
   return await Promise.all(promises)
