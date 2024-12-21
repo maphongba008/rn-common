@@ -1,6 +1,6 @@
 {
   "name": "@rn-common/logger",
-  "version": "52.0.0",
+  "version": "52.0.1",
   "main": "index.ts",
   "license": "MIT",
   "dependencies": {

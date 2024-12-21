@@ -1,6 +1,6 @@
 {
   "name": "@rn-common/file",
-  "version": "52.0.0",
+  "version": "52.0.1",
   "main": "index.js",
   "license": "MIT",
   "peerDependencies": {
