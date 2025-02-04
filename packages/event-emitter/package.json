@@ -1,10 +1,10 @@
 {
   "name": "@rn-common/event-emitter",
-  "version": "52.0.1",
+  "version": "52.0.3",
   "main": "index.ts",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "0.76.5",
-    "expo": "~52.0.20"
+    "react-native": "0.76.6",
+    "expo": "~52.0.29"
   }
 }

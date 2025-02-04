@@ -1,12 +1,12 @@
 {
   "name": "@rn-common/locale",
-  "version": "52.0.1",
+  "version": "52.0.3",
   "main": "index.ts",
   "license": "MIT",
   "peerDependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "react-redux": "^9.1.2",
-    "react-native": "0.76.5",
-    "expo": "~52.0.20"
+    "react-native": "0.76.6",
+    "expo": "~52.0.29"
   }
 }

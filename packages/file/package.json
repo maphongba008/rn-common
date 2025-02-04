@@ -1,11 +1,11 @@
 {
   "name": "@rn-common/file",
-  "version": "52.0.1",
+  "version": "52.0.3",
   "main": "index.js",
   "license": "MIT",
   "peerDependencies": {
-    "expo-file-system": "~18.0.6",
-    "react-native": "0.76.5",
-    "expo": "~52.0.20"
+    "expo-file-system": "~18.0.9",
+    "react-native": "0.76.6",
+    "expo": "~52.0.29"
   }
 }
