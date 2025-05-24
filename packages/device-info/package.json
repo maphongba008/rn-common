@@ -1,12 +1,12 @@
 {
   "name": "@rn-common/device-info",
-  "version": "52.0.3",
+  "version": "53.0.1",
   "main": "index.ts",
   "license": "MIT",
   "peerDependencies": {
-    "expo-application": "~6.0.2",
-    "expo-device": "~7.0.2",
-    "react-native": "0.76.6",
-    "expo": "~52.0.29"
+    "expo-application": "~6.1.4",
+    "expo-device": "~7.1.4",
+    "react-native": "0.79.2",
+    "expo": "~53.0.9"
   }
 }

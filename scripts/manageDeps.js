@@ -2,13 +2,15 @@ const fs = require('fs')
 const _ = require('lodash')
 
 const root = `${__dirname}/..`
-const sharedPackageVersion = '52.0.3'
+const sharedPackageVersion = '53.0.1'
 const srcPackages = `${root}/packages`
 
 const sharedPeerDeps = ['react-native', 'expo']
 const fileToJSON = (path) => JSON.parse(fs.readFileSync(path, 'utf8'))
 
-const packages = fs.readdirSync(srcPackages)
+const packages = fs
+  .readdirSync(srcPackages)
+  .filter((pkg) => String(pkg).indexOf('.DS_Store') === -1)
 const expoBundledPath = `${root}/node_modules/expo/bundledNativeModules.json`
 //
 for (const pkg of packages) {

@@ -5,8 +5,7 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "apps/*"
+    "packages/*"
   ],
   "dependencies": {
     "folder-hash": "^4.0.4"

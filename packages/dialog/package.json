@@ -1,11 +1,11 @@
 {
   "name": "@rn-common/dialog",
-  "version": "52.0.3",
+  "version": "53.0.1",
   "main": "index.tsx",
   "license": "MIT",
   "peerDependencies": {
-    "react-native-reanimated": "~3.16.1",
-    "react-native": "0.76.6",
-    "expo": "~52.0.29"
+    "react-native-reanimated": "~3.17.4",
+    "react-native": "0.79.2",
+    "expo": "~53.0.9"
   }
 }
