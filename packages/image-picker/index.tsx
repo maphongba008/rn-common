@@ -84,7 +84,7 @@ export type ImagePickerConfig = {
   quality?: number
   allowsMultipleSelection?: boolean
   base64?: boolean
-  mediaTypes: ('images' | 'videos' | 'livePhotos')[]
+  mediaTypes: EXImagePicker.MediaType | EXImagePicker.MediaType[]
 }
 
 export const openImageCameraPicker = async (config: ImagePickerConfig) => {
@@ -96,9 +96,14 @@ export const openImageCameraPicker = async (config: ImagePickerConfig) => {
     base64,
     mediaTypes,
   } = config
+  const currentPermissionStatus =
+    await EXImagePicker.getCameraPermissionsAsync()
+  if (!currentPermissionStatus.canAskAgain) {
+    throw new Error('PERMISSION_CAMERA_DENIED_FOREVER')
+  }
   const { status } = await EXImagePicker.requestCameraPermissionsAsync()
   if (status !== 'granted') {
-    throw 'PERMISSION_DENIED'
+    throw new Error('PERMISSION_CAMERA_DENIED')
   }
   const res = await EXImagePicker.launchCameraAsync({
     mediaTypes,
@@ -127,10 +132,14 @@ export const openImageLibraryPicker = async (config: ImagePickerConfig) => {
     base64,
     mediaTypes,
   } = config
-
+  const currentPermissionStatus =
+    await EXImagePicker.getMediaLibraryPermissionsAsync()
+  if (!currentPermissionStatus.canAskAgain) {
+    throw new Error('PERMISSION_LIBRARY_DENIED_FOREVER')
+  }
   const { status } = await EXImagePicker.requestMediaLibraryPermissionsAsync()
   if (status !== 'granted') {
-    throw new Error('PERMISSION_DENIED')
+    throw new Error('PERMISSION_LIBRARY_DENIED')
   }
   const res = await EXImagePicker.launchImageLibraryAsync({
     mediaTypes,

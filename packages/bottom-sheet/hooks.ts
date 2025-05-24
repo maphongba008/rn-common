@@ -13,7 +13,10 @@ import {
   withTiming,
 } from 'react-native-reanimated'
 
-export const useBottomSheetItemAnimation = (backgroundColor?: string) => {
+export const useBottomSheetItemAnimation = (
+  backgroundColor: string,
+  height: number,
+) => {
   const animation = useSharedValue(0)
   const runAnimation = React.useCallback(
     (toValue: number, callback?: () => void) => {
@@ -29,7 +32,7 @@ export const useBottomSheetItemAnimation = (backgroundColor?: string) => {
   const animatedContentStyle = useAnimatedStyle(() => ({
     transform: [
       {
-        translateY: interpolate(animation.value, [0, 1], [500, 0]),
+        translateY: interpolate(animation.value, [0, 1], [height, 0]),
       },
     ],
   }))
@@ -37,7 +40,7 @@ export const useBottomSheetItemAnimation = (backgroundColor?: string) => {
     backgroundColor: interpolateColor(
       animation.value,
       [0, 1],
-      ['rgba(0,0,0,0)', backgroundColor || 'rgba(0,0,0,0.5)'],
+      ['rgba(0,0,0,0)', backgroundColor],
     ),
   }))
 

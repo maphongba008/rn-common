@@ -2,6 +2,7 @@ import { emit, subscribe } from '@rn-common/event-emitter'
 import React from 'react'
 import {
   KeyboardAvoidingView,
+  LayoutChangeEvent,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native'
@@ -19,8 +20,12 @@ const BottomSheetItem = ({
   data: any
   config: SheetConfig
 }) => {
+  const [height, setHeight] = React.useState(500)
   const { animatedContentStyle, animatedContainerStyle, runAnimation } =
-    useBottomSheetItemAnimation(config.backgroundColor)
+    useBottomSheetItemAnimation(
+      config.backgroundColor || 'rgba(0,0,0,0.5)',
+      height,
+    )
   const Component = sheetMap[type]
   React.useEffect(() => {
     runAnimation(1)
@@ -38,6 +43,10 @@ const BottomSheetItem = ({
     })
   }, [close, type])
 
+  const onLayout = React.useCallback((event: LayoutChangeEvent) => {
+    setHeight(event.nativeEvent.layout.height)
+  }, [])
+
   if (!Component) {
     console.error(`BottomSheet: ${type} is not registered`)
     return null
@@ -51,7 +60,7 @@ const BottomSheetItem = ({
           activeOpacity={1}
           onPress={close}
         />
-        <Animated.View style={animatedContentStyle}>
+        <Animated.View onLayout={onLayout} style={animatedContentStyle}>
           <Component {...{ data, type, close }} />
         </Animated.View>
       </KeyboardAvoidingView>
