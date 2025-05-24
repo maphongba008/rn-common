@@ -71,8 +71,13 @@ export const useIsKeyboardShow = () => {
  */
 export function useBackHandler(handler: () => boolean) {
   React.useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', handler)
+    const subscription = BackHandler.addEventListener(
+      'hardwareBackPress',
+      handler,
+    )
 
-    return () => BackHandler.removeEventListener('hardwareBackPress', handler)
+    return () => {
+      subscription.remove()
+    }
   }, [handler])
 }

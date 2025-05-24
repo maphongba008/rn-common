@@ -75,9 +75,12 @@ export const Dialog = ({
       }
       return false
     }
-    BackHandler.addEventListener('hardwareBackPress', handler)
+    const subscription = BackHandler.addEventListener(
+      'hardwareBackPress',
+      handler,
+    )
     return () => {
-      BackHandler.removeEventListener('hardwareBackPress', handler)
+      subscription.remove()
     }
   }, [cancelable, onRequestClose])
 
