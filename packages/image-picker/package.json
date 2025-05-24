@@ -4,7 +4,7 @@
   "main": "index.tsx",
   "license": "MIT",
   "dependencies": {
-    "@rn-common/action-sheet": "^0.1.0"
+    "@rn-common/action-sheet": "*"
   },
   "peerDependencies": {
     "expo-image-manipulator": "~13.1.7",
