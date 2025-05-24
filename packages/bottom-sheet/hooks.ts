@@ -1,7 +1,3 @@
-/**
- * Custom hook for animating bottom sheet items.
- * @returns An object containing animation related values and styles.
- */
 import React from 'react'
 import { Keyboard } from 'react-native'
 import {
