@@ -2,7 +2,7 @@ const fs = require('fs')
 const _ = require('lodash')
 
 const root = `${__dirname}/..`
-const sharedPackageVersion = '53.0.1'
+const sharedPackageVersion = '53.0.2'
 const srcPackages = `${root}/packages`
 
 const sharedPeerDeps = ['react-native', 'expo']

@@ -1,6 +1,6 @@
 {
   "name": "@rn-common/action-sheet",
-  "version": "53.0.1",
+  "version": "53.0.2",
   "main": "index.tsx",
   "license": "MIT",
   "dependencies": {
